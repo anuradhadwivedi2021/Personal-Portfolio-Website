@@ -1,0 +1,921 @@
+/* ============================================
+   PERSONAL PORTFOLIO WEBSITE - CSS STYLES
+   Week 2 Project: Adding Professional Styling
+   ============================================ */
+
+/* ============================================
+   1. CSS RESET & BASE STYLES
+   ============================================ */
+
+/* Universal reset for consistent styling across browsers */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ============================================
+   2. CSS VARIABLES (Custom Properties)
+   ============================================ */
+
+:root {
+  /* Color Palette */
+  --primary-color: #2563eb;        /* Blue */
+  --secondary-color: #1e293b;      /* Dark slate */
+  --accent-color: #f59e0b;         /* Amber */
+  --success-color: #10b981;        /* Green */
+  --danger-color: #ef4444;         /* Red */
+  
+  /* Neutral Colors */
+  --white: #ffffff;
+  --black: #000000;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --gray-900: #0f172a;
+  
+  /* Typography */
+  --font-primary: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-heading: 'Poppins', 'Inter', sans-serif;
+  --font-mono: 'Fira Code', 'Courier New', monospace;
+  
+  /* Font Sizes */
+  --fs-xs: 0.75rem;      /* 12px */
+  --fs-sm: 0.875rem;     /* 14px */
+  --fs-base: 1rem;       /* 16px */
+  --fs-lg: 1.125rem;     /* 18px */
+  --fs-xl: 1.25rem;      /* 20px */
+  --fs-2xl: 1.5rem;      /* 24px */
+  --fs-3xl: 1.875rem;    /* 30px */
+  --fs-4xl: 2.25rem;     /* 36px */
+  --fs-5xl: 3rem;        /* 48px */
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;   /* 8px */
+  --spacing-sm: 0.75rem;  /* 12px */
+  --spacing-md: 1rem;     /* 16px */
+  --spacing-lg: 1.5rem;   /* 24px */
+  --spacing-xl: 2rem;     /* 32px */
+  --spacing-2xl: 3rem;    /* 48px */
+  --spacing-3xl: 4rem;    /* 64px */
+  
+  /* Border Radius */
+  --radius-sm: 0.25rem;   /* 4px */
+  --radius-md: 0.5rem;    /* 8px */
+  --radius-lg: 0.75rem;   /* 12px */
+  --radius-xl: 1rem;      /* 16px */
+  --radius-full: 9999px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+  
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 300ms ease-in-out;
+  --transition-slow: 500ms ease-in-out;
+  
+  /* Layout */
+  --container-max-width: 1200px;
+  --header-height: 70px;
+}
+
+/* ============================================
+   3. BASE HTML ELEMENTS
+   ============================================ */
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  color: var(--gray-800);
+  background-color: var(--gray-50);
+  min-height: 100vh;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-md);
+  color: var(--secondary-color);
+}
+
+h1 { font-size: var(--fs-5xl); }
+h2 { font-size: var(--fs-4xl); }
+h3 { font-size: var(--fs-3xl); }
+h4 { font-size: var(--fs-2xl); }
+h5 { font-size: var(--fs-xl); }
+h6 { font-size: var(--fs-lg); }
+
+p {
+  margin-bottom: var(--spacing-md);
+  color: var(--gray-700);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+a:hover {
+  color: var(--accent-color);
+}
+
+a:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul, ol {
+  margin-bottom: var(--spacing-md);
+  padding-left: var(--spacing-xl);
+}
+
+li {
+  margin-bottom: var(--spacing-xs);
+  color: var(--gray-700);
+}
+
+hr {
+  border: none;
+  border-top: 2px solid var(--gray-200);
+  margin: var(--spacing-2xl) 0;
+}
+
+/* ============================================
+   4. HEADER & NAVIGATION
+   ============================================ */
+
+header {
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--gray-800) 100%);
+  color: var(--white);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: var(--shadow-lg);
+}
+
+header h1 {
+  color: var(--white);
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--fs-3xl);
+  letter-spacing: -0.5px;
+}
+
+header p {
+  color: var(--gray-300);
+  font-size: var(--fs-lg);
+  margin-bottom: var(--spacing-lg);
+  font-weight: 300;
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: var(--white);
+  font-weight: 500;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+nav a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--accent-color);
+  transform: translateX(-100%);
+  transition: transform var(--transition-base);
+}
+
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--accent-color);
+}
+
+nav a:hover::before {
+  transform: translateX(0);
+}
+
+nav a:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   5. MAIN CONTENT LAYOUT
+   ============================================ */
+
+main {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--spacing-2xl) var(--spacing-xl);
+}
+
+section {
+  margin-bottom: var(--spacing-3xl);
+  padding: var(--spacing-2xl);
+  background-color: var(--white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+section:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
+}
+
+section h2 {
+  color: var(--secondary-color);
+  border-bottom: 3px solid var(--primary-color);
+  padding-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+  display: inline-block;
+}
+
+/* ============================================
+   6. ABOUT SECTION
+   ============================================ */
+
+#about {
+  text-align: center;
+}
+
+#about img {
+  width: 200px;
+  height: 200px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  margin: 0 auto var(--spacing-xl);
+  border: 5px solid var(--primary-color);
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+#about img:hover {
+  transform: scale(1.05) rotate(3deg);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--accent-color);
+}
+
+#about p {
+  font-size: var(--fs-lg);
+  line-height: 1.8;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+/* ============================================
+   7. SKILLS SECTION
+   ============================================ */
+
+#skills h3 {
+  color: var(--primary-color);
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+#skills h3::before {
+  content: '▸';
+  color: var(--accent-color);
+  font-size: var(--fs-3xl);
+}
+
+#skills ul,
+#skills ol {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-md);
+  padding: 0;
+  list-style: none;
+}
+
+#skills li {
+  background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--primary-color);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+#skills li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--primary-color);
+  opacity: 0.1;
+  transition: width var(--transition-base);
+}
+
+#skills li:hover {
+  transform: translateX(10px);
+  border-left-color: var(--accent-color);
+  box-shadow: var(--shadow-md);
+}
+
+#skills li:hover::before {
+  width: 100%;
+}
+
+/* Counter for ordered lists */
+#skills ol {
+  counter-reset: skill-counter;
+}
+
+#skills ol li {
+  counter-increment: skill-counter;
+}
+
+#skills ol li::after {
+  content: counter(skill-counter);
+  position: absolute;
+  right: var(--spacing-md);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  color: var(--primary-color);
+  opacity: 0.2;
+}
+
+/* ============================================
+   8. PROJECTS SECTION
+   ============================================ */
+
+#projects {
+  background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+}
+
+#projects article {
+  margin-bottom: var(--spacing-2xl);
+  padding: var(--spacing-xl);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  background-color: var(--white);
+  transition: all var(--transition-base);
+}
+
+#projects article:hover {
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-lg);
+  transform: scale(1.02);
+}
+
+#projects h3 {
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-md);
+}
+
+#projects img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  margin: var(--spacing-md) 0;
+  transition: transform var(--transition-base);
+}
+
+#projects img:hover {
+  transform: scale(1.05);
+}
+
+#projects p strong {
+  color: var(--secondary-color);
+  font-weight: 600;
+}
+
+#projects a {
+  display: inline-block;
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-xl);
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
+}
+
+#projects a:hover {
+  background-color: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+#projects a:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   9. CONTACT SECTION
+   ============================================ */
+
+#contact {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: var(--white);
+}
+
+#contact h2,
+#contact h3 {
+  color: var(--white);
+  border-bottom-color: var(--accent-color);
+}
+
+#contact p {
+  color: var(--gray-100);
+  font-size: var(--fs-lg);
+}
+
+/* Form Styling */
+form {
+  background-color: var(--white);
+  padding: var(--spacing-2xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  margin: var(--spacing-xl) 0;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  color: var(--secondary-color);
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--fs-base);
+}
+
+label span {
+  color: var(--danger-color);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+  width: 100%;
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  border: 2px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  font-family: var(--font-primary);
+  font-size: var(--fs-base);
+  transition: all var(--transition-base);
+  background-color: var(--gray-50);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background-color: var(--white);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+input:valid,
+select:valid,
+textarea:valid {
+  border-color: var(--success-color);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--gray-300);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Checkbox Styling */
+input[type="checkbox"] {
+  width: auto;
+  margin-right: var(--spacing-xs);
+  cursor: pointer;
+  accent-color: var(--primary-color);
+}
+
+/* Button Styling */
+button {
+  padding: var(--spacing-md) var(--spacing-2xl);
+  font-size: var(--fs-base);
+  font-weight: 600;
+  font-family: var(--font-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  margin-right: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+}
+
+button[type="submit"] {
+  background-color: var(--primary-color);
+  color: var(--white);
+  box-shadow: var(--shadow-md);
+}
+
+button[type="submit"]:hover {
+  background-color: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+button[type="reset"] {
+  background-color: var(--gray-300);
+  color: var(--gray-700);
+}
+
+button[type="reset"]:hover {
+  background-color: var(--gray-700);
+  color: var(--white);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Contact Links */
+#contact ul {
+  list-style: none;
+  padding: 0;
+}
+
+#contact li {
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+#contact a {
+  color: var(--white);
+  font-weight: 500;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-base);
+}
+
+#contact a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--accent-color);
+}
+
+/* ============================================
+   10. FOOTER
+   ============================================ */
+
+footer {
+  background-color: var(--secondary-color);
+  color: var(--gray-300);
+  text-align: center;
+  padding: var(--spacing-2xl) var(--spacing-xl);
+  margin-top: var(--spacing-3xl);
+}
+
+footer p {
+  color: var(--gray-300);
+  margin-bottom: var(--spacing-sm);
+}
+
+footer a {
+  color: var(--white);
+  margin: 0 var(--spacing-sm);
+  transition: color var(--transition-base);
+}
+
+footer a:hover {
+  color: var(--accent-color);
+}
+
+/* ============================================
+   11. UTILITY CLASSES
+   ============================================ */
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+.mb-xl { margin-bottom: var(--spacing-xl); }
+
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mt-xl { margin-top: var(--spacing-xl); }
+
+/* ============================================
+   12. RESPONSIVE DESIGN - MEDIA QUERIES
+   ============================================ */
+
+/* Tablets and small laptops (max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+  :root {
+    --fs-5xl: 2.5rem;
+    --fs-4xl: 2rem;
+  }
+  
+  main {
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+  
+  section {
+    padding: var(--spacing-xl);
+  }
+}
+
+/* Tablets (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  :root {
+    --fs-5xl: 2rem;
+    --fs-4xl: 1.75rem;
+    --fs-3xl: 1.5rem;
+  }
+  
+  header {
+    padding: var(--spacing-md);
+  }
+  
+  header h1 {
+    font-size: var(--fs-2xl);
+  }
+  
+  nav {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+  
+  nav a {
+    text-align: center;
+    padding: var(--spacing-md);
+  }
+  
+  main {
+    padding: var(--spacing-lg) var(--spacing-sm);
+  }
+  
+  section {
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  #skills ul,
+  #skills ol {
+    grid-template-columns: 1fr;
+  }
+  
+  form {
+    padding: var(--spacing-lg);
+  }
+  
+  button {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+/* Mobile phones (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  :root {
+    --fs-5xl: 1.75rem;
+    --fs-4xl: 1.5rem;
+    --fs-3xl: 1.25rem;
+    --fs-2xl: 1.125rem;
+  }
+  
+  body {
+    font-size: 0.9375rem; /* 15px */
+  }
+  
+  header {
+    padding: var(--spacing-sm);
+  }
+  
+  header h1 {
+    font-size: var(--fs-xl);
+  }
+  
+  header p {
+    font-size: var(--fs-base);
+  }
+  
+  nav a {
+    padding: var(--spacing-sm);
+    font-size: var(--fs-sm);
+  }
+  
+  main {
+    padding: var(--spacing-md) var(--spacing-xs);
+  }
+  
+  section {
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+  }
+  
+  #about img {
+    width: 150px;
+    height: 150px;
+  }
+  
+  #projects img {
+    max-width: 100%;
+  }
+  
+  form {
+    padding: var(--spacing-md);
+  }
+  
+  input,
+  select,
+  textarea {
+    font-size: var(--fs-base);
+  }
+  
+  button {
+    padding: var(--spacing-sm) var(--spacing-lg);
+  }
+}
+
+/* ============================================
+   13. PRINT STYLES
+   ============================================ */
+
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  header {
+    position: static;
+  }
+  
+  nav,
+  form,
+  button {
+    display: none;
+  }
+  
+  section {
+    page-break-inside: avoid;
+  }
+  
+  a {
+    text-decoration: underline;
+  }
+  
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+  }
+}
+
+/* ============================================
+   14. ANIMATIONS & KEYFRAMES
+   ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Apply fade-in animation to sections */
+section {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Stagger animations for list items */
+#skills li {
+  animation: fadeIn 0.5s ease-out backwards;
+}
+
+#skills li:nth-child(1) { animation-delay: 0.1s; }
+#skills li:nth-child(2) { animation-delay: 0.2s; }
+#skills li:nth-child(3) { animation-delay: 0.3s; }
+#skills li:nth-child(4) { animation-delay: 0.4s; }
+#skills li:nth-child(5) { animation-delay: 0.5s; }
+
+/* ============================================
+   15. ACCESSIBILITY ENHANCEMENTS
+   ============================================ */
+
+/* Focus styles for keyboard navigation */
+:focus-visible {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 3px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --primary-color: #0000ff;
+    --secondary-color: #000000;
+    --accent-color: #ff0000;
+  }
+  
+  button,
+  a {
+    border: 2px solid currentColor;
+  }
+}
+
+/* ============================================
+   END OF STYLESHEET
+   ============================================ */
